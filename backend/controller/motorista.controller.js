@@ -26,23 +26,17 @@ const cadastrar = async (req, res) => {
     }
 }
 
-const listar = async (req, res)=>{
-    try{
+const listar = async (req, res) => {
+    try {
         let motoristas = await Motorista.findAll()
         motoristas.forEach(el => {
             el.cnh = cryptoJs.AES.decrypt(el.cnh, "senha").toString(cryptoJs.enc.Utf8)
             el.cpf = cryptoJs.AES.decrypt(el.cpf, "senha").toString(cryptoJs.enc.Utf8)
-
-            motoristas[el] = {
-                ...motoristas,
-                cnh: el.cnh,
-                cpf: el.cpf
-            }
-        });
+        })
         return res.status(200).json(motoristas)
-    }catch(err){
+    } catch (err) {
         console.error('erro ao listar', err)
-        res.status(500).json({message: 'erro ao listar'})
+        res.status(500).json({ message: 'erro ao listar' })
     }
 }
 
@@ -108,10 +102,12 @@ const atualizar = async(req, res)=>{
             return res.status(404).json({message: 'motorista não encontrado'})
         }
 
+        let cpfCripto = cryptoJs.AES.encrypt(cpf, "senha").toString()
+        let cnhCripto = cryptoJs.AES.encrypt(cnh, "senha").toString()
         await motorista.update({
             nome,
-            cnh,
-            cpf,
+            cnh: cnhCripto,
+            cpf: cpfCripto,
             telefone
         })
 

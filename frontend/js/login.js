@@ -1,34 +1,33 @@
-const { json } = require("body-parser")
+const btn_login = document.getElementById('btn_login')
+const resposta = document.getElementById('resposta')
 
-let res = document.getElementById('res')
-let loginBTN = document.getElementById('loginBTN')
-
-loginBTN.addEventListener('click', async (e)=>{
+btn_login.addEventListener('click', (e) => {
     e.preventDefault()
 
-    try{
-        let email = document.getElementById('email').value
-        let senha = document.getElementById('senha').value
+    const email = document.getElementById('email').value
+    const senha = document.getElementById('senha').value
 
-        const payload = {
-            email: email,
-            senha: senha
-        }
-
-        const resposta = fetch(`http://localhost:3000/login`, {
-            method: 'POST',
-            body: JSON.stringify(payload),
-            headers: { "Content- Type": "application/ json"}
-        })
-
-        const dados = await resposta.json()
-        res.innerHTML = dados.message
-
-        if(resposta.ok){
-            localStorage.setItem("token", dados.token)
-            res.innerHTML = "login realizado com sucesso"
-        }
-    }catch(err){
-
+    const valores = {
+        email: email,
+        senha: senha
     }
+
+    fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(valores)
+    })
+        .then(res => res.json())
+        .then(dados => {
+            resposta.innerHTML = `<p>${dados.message}</p>`
+            if (dados.token) {
+                localStorage.setItem('token', dados.token)
+                localStorage.setItem('nomeFuncionario', dados.nome)
+                location.href = '../index.html'
+            }
+        })
+        .catch(err => {
+            console.error('Erro no login:', err)
+            resposta.innerHTML = `<p>Erro ao tentar conectar com o servidor.</p>`
+        })
 })

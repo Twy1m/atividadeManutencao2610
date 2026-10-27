@@ -15,10 +15,10 @@ const cadastrar = async (req, res) => {
             return res.status(404).json({ message: "Carga não encontrado" })
         }
 
-        Entrega.create({
+        await Entrega.create({
             cidadeDestino,
             statusAtual,
-            dataHora,
+            dataHora: new Date(dataHora),
             idCarga
         })
 

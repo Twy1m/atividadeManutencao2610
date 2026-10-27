@@ -1,41 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="./js/login.js"></script>
-	<title>homepage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/index.js" defer></script>
+    <title>Sistema de Cargas - Painel</title>
 </head>
 <body>
-	<header>
-		<nav>
-			<h1>
-				Funcionario
-			</h1>
-			<a href="./html/cadFuncionario.html">Cadastrar</a>
-			<h1>
-				Motorista
-			</h1>
-			<a href="./html/cadMotorista.html">Cadastrar</a>
-			<a href="./html/listarMotorista.html">Listar</a>
-		</nav>
+    <header>
+        <nav>
+            <a href="./index.html">Home</a>&emsp;&emsp;
 
-		<button onclick="localStorage.clear(); location.reload()">Logout</button>
-	</header>
+            <span class="titulo_menu">Funcionário</span>&emsp;
+            <a href="./html/cadFuncionario.html">Cadastrar</a>
+            <br><br><hr><br>
 
-	<body>
-		<h2>Login</h2>
-		<form >
-			<label for="email">email</label>
-			<input type="text" id="email">
+            <span class="titulo_menu">Motorista</span>&emsp;
+            <a href="./html/cadMotorista.html">Cadastrar</a>&emsp;
+            <a href="./html/listarMotorista.html">Listar</a>&emsp;
+            <a href="./html/consultarMotoristaID.html">Consultar por ID</a>&emsp;
+            <a href="./html/consultarMotoristaNome.html">Consultar por Nome</a>&emsp;
+            <a href="./html/atualizarMotorista.html">Atualizar</a>&emsp;
+            <a href="./html/apagarMotorista.html">Apagar</a>
+            <br><br><hr><br>
 
-			<label for="senha">senha</label>
-			<input type="text" id="senha">
+            <span class="titulo_menu">Carga</span>&emsp;
+            <a href="./html/cadCarga.html">Cadastrar</a>
+            <br><br><hr><br>
 
-			<button id="loginBTN">Login</button>
-		</form>
+            <span class="titulo_menu">Entrega</span>&emsp;
+            <a href="./html/cadEntrega.html">Cadastrar</a>&emsp;
+            <a href="./html/listarEntrega.html">Listar</a>
+            <br><br><hr><br>
 
-		<div id="res"></div>
-	</body>
+            <span id="verificar_log"></span>
+        </nav>
+    </header>
+    <main>
+        <h1>Painel de Controle - Sistema de Cargas</h1>
+        <br><br>
+        <h2>Sistema de Gestão de Motoristas e Funcionários</h2>
+        <br>
+        <p class="resposta" id="boas_vindas"></p>
+        <br>
+    </main>
 </body>
+</html>
+
 </html>

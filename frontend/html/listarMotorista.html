@@ -1,37 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="./js/login.js"></script>
-	<title>homepage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/style.css">
+    <script src="../js/listarMotorista.js" defer></script>
+    <title>Listar Motoristas</title>
 </head>
 <body>
-	<header>
-		<nav>
-			<h1>
-				Motorista
-			</h1>
-			<a href="./html/cadMotorista.html">Cadastrar</a>
-			<a href="./html/listarMotorista.html">Listar</a>
-		</nav>
-
-		<button onclick="localStorage.clear(); location.reload()">Logout</button>
-	</header>
-
-	<body>
-		<h2>Login</h2>
-		<form >
-			<label for="email">email</label>
-			<input type="text" id="email">
-
-			<label for="senha">senha</label>
-			<input type="text" id="senha">
-
-			<button id="loginBTN">Login</button>
-		</form>
-
-		<div id="res"></div>
-	</body>
+    <header>
+        <nav>
+            <a href="../index.html">Home</a>
+        </nav>
+        <br><hr><br>
+    </header>
+    <main>
+        <h1>Motoristas Cadastrados</h1>
+        <br>
+        <button id="btn_listar">Listar Motoristas</button>
+        <br><br>
+        <div id="resposta" class="resposta"></div>
+    </main>
 </body>
 </html>

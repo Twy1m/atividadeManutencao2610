@@ -22,7 +22,7 @@ const login = async (req, res) => {
             "senha"
         ).toString()
 
-        res.status(200).json({ token: token })
+        res.status(200).json({ token: token, nome: funcionario.nome })
     } catch (error) {
         res.status(401).json({ message: "erro ao fazer login", error })
         console.error(error)

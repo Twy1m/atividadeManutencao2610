@@ -13,7 +13,7 @@ const Carga = conn.define('carga', {
         allowNull: false
     },
     peso: {
-        type: DataTypes.STRING,
+        type: DataTypes.DECIMAL(10,2),
         allowNull: false
     },
     volume: {
