@@ -11,7 +11,7 @@ const login = async (req, res) => {
             return res.status(401).json({ message: "credenciais inválidas" })
         }
 
-        const duasHorasMs = 2 * 60 * 60 * 1000
+        const duasHorasMs = 3 * 60 * 60 * 1000
         const tempoExpiracao = Date.now() + duasHorasMs
 
         const token = cryptoJs.AES.encrypt(

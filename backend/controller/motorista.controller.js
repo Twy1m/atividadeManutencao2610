@@ -54,21 +54,13 @@ const buscarID = async(req, res)=>{
     }
 
     try{
-        let motorista = await Motorista.findByPK(id)
+        let motorista = await Motorista.findByPk(id)
         if(!motorista){
             return res.status(404).json({ message: 'motorista não encontrado' })
         }
 
-        motorista.forEach(el => {
-            el.cnh = cryptoJs.AES.decrypt(el.cnh, "senha").toString(cryptoJs.enc.Utf8)
-            el.cpf = cryptoJs.AES.decrypt(el.cpf, "senha").toString(cryptoJs.enc.Utf8)
-
-            motorista[el] = {
-                ...motorista,
-                cnh: el.cnh,
-                cpf: el.cpf
-            }
-        })
+        motorista.cnh = cryptoJs.AES.decrypt(motorista.cnh, "senha").toString(cryptoJs.enc.Utf8)
+        motorista.cpf = cryptoJs.AES.decrypt(motorista.cpf, "senha").toString(cryptoJs.enc.Utf8)
 
         res.status(200).json(motorista)
     }catch(err){
@@ -91,17 +83,11 @@ const buscarNome = async(req, res)=>{
             return res.status(404).json({ message: 'motorista não encontrado' })
         }
 
-        motorista.forEach(el => {
-            el.cnh = cryptoJs.AES.decrypt(el.cnh, "senha").toString(cryptoJs.enc.Utf8)
-            el.cpf = cryptoJs.AES.decrypt(el.cpf, "senha").toString(cryptoJs.enc.Utf8)
+        motorista.cnh = cryptoJs.AES.decrypt(motorista.cnh, "senha").toString(cryptoJs.enc.Utf8)
+        motorista.cpf = cryptoJs.AES.decrypt(motorista.cpf, "senha").toString(cryptoJs.enc.Utf8)
 
-            motorista[el] = {
-                ...motorista,
-                cnh: el.cnh,
-                cpf: el.cpf
-            }
-        })
         res.status(200).json(motorista)
+
     }catch(err){
         console.error('erro ao buscar por nome', err)
         res.status(500).json({ message: 'erro ao buscar'})
@@ -117,7 +103,7 @@ const atualizar = async(req, res)=>{
     }
 
     try{
-        const motorista = await findByPK(id)
+        const motorista = await Motorista.findByPk(id)
         if(!motorista) {
             return res.status(404).json({message: 'motorista não encontrado'})
         }
@@ -145,7 +131,7 @@ const apagar = async(req, res)=>{
     }
 
     try{
-        const motorista = await findByPK(id)
+        const motorista = await Motorista.findByPk(id)
         if(!motorista) {
             return res.status(404).json({message: 'motorista não encontrado'})
         }

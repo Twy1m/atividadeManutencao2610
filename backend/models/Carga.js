@@ -1,5 +1,5 @@
 const conn = require('../db/conn')
-const { DataTypes, DATE } = require('sequelize')
+const { DataTypes } = require('sequelize')
 
 const Carga = conn.define('carga', {
     codCarga: {
